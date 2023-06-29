@@ -1,0 +1,274 @@
+<section class="xs:hidden sm:hidden md:hidden">
+  <div class="mt-20">
+      <div class="max-w-full mt-100 col-start-2 col-span-10 rounded-md bg-sky-200 rounded-lg shadow-md">
+        <div class="flex flex-wrap pl-5 pt-5">
+          <div class=" ">
+            <h1 class="pl-10 pt-5 text-2xl text-gray-600 font-semibold mb-4">{{name}}</h1>
+            <p class="pl-10 text-base text-gray-600 mb-2">{{description}}</p>
+          </div>
+          <div *ngIf="passed==true && userRole=='student'&& isGraded==true" class="flex mr-5 pt-5 flex-col items-center text-white justify-center bg-green-500 rounded-md shadow-md h-20 w-28 ml-auto">
+            <span class="text-sm">Grade</span>
+            <span class="text-lg font-semibold">{{currentStudentGrade}}</span>
+          </div>
+          <div *ngIf="passed==false && userRole=='student'&& isGraded==true" class="flex mr-5 pt-5 flex-col items-center text-white justify-center bg-red-500 rounded-md shadow-md h-20 w-28 ml-auto">
+            <span class="text-sm">Grade</span>
+            <span class="text-lg font-semibold">{{currentStudentGrade}}</span>
+          </div>
+          <div *ngIf="userRole=='secretary'&& isGraded==true" class="flex mr-5 py-5 flex-col items-center text-white justify-center bg-orange-400 rounded-md shadow-md h-10 w-28 ml-auto">
+            <span class="text-sm font-semibold">Graded</span>
+          </div>
+        </div>
+        
+        <div class="flex flex-wrap pl-5 pt-5">
+          <div class="flex items-center text-white mb-2 mx-5">
+            <div class="flex flex-col items-center justify-center bg-blue-500 rounded-md shadow-md h-20 w-28">
+              <span class="text-sm">ECTS</span>
+              <span class="text-lg font-semibold">{{ects}}</span>
+            </div>
+          </div>
+          <div class="flex items-center text-white mb-2 mx-5">
+            <div class="flex flex-col items-center justify-center bg-blue-500 rounded-md shadow-md h-20 w-28">
+              <span class="text-sm">No. of Places</span>
+              <span class="text-lg font-semibold">{{num_places}}</span>
+            </div>
+          </div>
+          <div class="flex items-center text-white mb-2 mx-5">
+            <div class="flex flex-col items-center justify-center bg-blue-500 rounded-md shadow-md h-20 w-28">
+              <span class="text-sm">Start Date</span>
+              <span class="text-lg font-semibold">{{start_date}}</span>
+            </div>
+          </div>
+          <div class="flex items-center text-white mb-2 mx-5">
+            <div class="flex flex-col items-center justify-center bg-blue-500 rounded-md shadow-md h-20 w-28">
+              <span class="text-sm">End Date</span>
+              <span class="text-lg font-semibold">{{end_date}}</span>
+            </div>
+          </div>
+          <div class="flex items-center text-white mb-2 mx-5">
+            <div class="flex flex-col items-center justify-center bg-blue-500 rounded-md shadow-md h-20 w-28">
+              <span class="text-sm">Semester</span>
+              <span class="text-lg font-semibold">{{semester}}</span>
+            </div>
+          </div>
+          <div class="flex items-center text-white mb-2 mx-5">
+            <div class="flex flex-col items-center justify-center bg-blue-500 rounded-md shadow-md h-20 w-28">
+              <span class="text-sm">Faculty</span>
+              <span class="text-lg font-semibold">{{faculty}}</span>
+            </div>
+          </div>
+        </div>
+        <h2 *ngIf="userRole !=='teacher'" class="pl-10 pt-5 text-xl font-semibold mb-4 text-gray-600">Course Teacher:</h2>
+        <div class="flex flex-wrap ml-28" *ngIf="userRole !=='teacher'">
+          <span class="text-lg text-gray-700 font-semibold" style="width: 65%;">{{courseTeacher}}</span>
+          <div class="ml-10" *ngIf="userRole =='secretary'">
+            <button *ngIf="isTeacher==true && isGraded==false" class="bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600 transition-colors duration-300 ease-in-out" (click)="unassignTeacher()">Unassign teacher</button>
+            <a href="secretary/courses/view-course/enroll-teacher/{{courseId}}" *ngIf="isTeacher==false && isGraded==false" class="bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600 transition-colors duration-300 ease-in-out">Enrol teacher</a>
+        </div>
+        </div>
+        <h2 class="pl-10 pt-5 text-xl font-semibold mb-4 text-gray-600" *ngIf="userRole =='secretary' || userRole=='teacher'">Enrolled Students:</h2>
+        <div class="flex flex-wrap" *ngIf="userRole =='secretary' || userRole == 'teacher'">
+          <div class="max-w-full mt-5 mx-10 overflow-y-scroll rounded-md shadow-md " style="max-height: 300px;width: 65%;">
+              <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-100" style="position: sticky; top: 0;">
+                  <tr>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Full Name</th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">DNI</th>
+                  <th scope="col" *ngIf="userRole =='teacher'" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Grade</th>
+                  <th scope="col" *ngIf="userRole =='secretary' && isGraded==true" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Grade</th>
+                  <th *ngIf="userRole =='secretary'" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"> </th>
+                  <th *ngIf="userRole =='teacher' && isGraded==false" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"> </th>
+                  <th *ngIf="userRole =='teacher' || userRole=='secretary'" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"> </th>
+                  </tr>
+              </thead>
+              <tbody class="bg-transparent divide-y divide-gray-200" >
+                  <tr class="prueba text-gray-500" id="fila" *ngFor="let row of rows" >
+                      <td class="px-4 py-4 whitespace-nowrap font-semibold">{{ row.id }}</td>
+                      <td class="px-4 py-4 whitespace-nowrap font-semibold">{{ row.full_name }} </td>
+                      <td class="px-4 py-4 whitespace-nowrap font-semibold">{{ row.dni }}</td>
+                      <td *ngIf="userRole =='teacher' && isGraded==true" class="px-4 py-4 whitespace-nowrap font-semibold">{{ row.grade }}</td>
+                      <td *ngIf="userRole =='secretary' && isGraded==true" class="px-4 py-4 whitespace-nowrap font-semibold">{{ row.grade }}</td>
+                      <td *ngIf="userRole =='secretary' || userRole=='teacher'" class="pr-4 pl-4 py-4 whitespace-nowrap"><i class="fa-solid fa-eye" (click)="viewStudent(row.id)"></i></td>
+                      <td *ngIf="userRole =='teacher' && isGraded==false" class="px-4 py-4 whitespace-nowrap font-semibold"><input type="number" step="any" min="0" max="10" id="inputGrade" class="border-2 border-gray-300 bg-white h-10 w-20 px-5 pr-1 rounded-lg text-sm focus:outline-none" [(ngModel)]="row.grade"(change)="gradeV=false" [ngClass]="{'border-red-500': gradeV == true, 'border-2': gradeV == true, 'text-red-500': gradeV == true}"></td>
+                      <td *ngIf="userRole =='secretary' && isGraded==false" class="pr-4 pl-4 py-4 whitespace-nowrap"><i class="fa-sharp fa-solid fa-trash" (click)="unenrollStudent(row.id)"></i></td>
+                      <td *ngIf="userRole =='teacher' && isGraded==false" class="px-4 py-4 whitespace-nowrap font-semibold"><button type="submit" id="buttonGrade" class=" ml-10 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-300 ease-in-out" (click)="gradeStudent(row.id, row.grade)">Grade</button></td>
+                  </tr>
+              </tbody>
+              </table>
+          </div>
+          <div class="mt-32">
+              <a *ngIf="userRole =='secretary' && isGraded==false" href="secretary/courses/view-course/enroll-student/{{courseId}}" class="bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600 transition-colors duration-300 ease-in-out">Enrol new student</a>
+          </div>
+          <div class="mt-32">
+            <button *ngIf="userRole =='teacher' && isGraded==false"type="submit" id="buttonGrade" class=" bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600 transition-colors duration-300 ease-in-out" (click)="signGrades()">Sign grades</button>
+          </div>
+          </div>
+          <h2 class="pl-10 pt-5 text-xl font-semibold mb-4 text-gray-600">Competences:</h2>
+        <div class="flex flex-wrap pb-20">
+          <div class="max-w-full mt-5 mx-10 overflow-y-scroll rounded-md shadow-md" style="max-height: 300px;width: 65%;">
+              <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-100" style="position: sticky; top: 0;">
+                  <tr>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">competence</th>
+                  <th scope="col" class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"> </th>
+                  <th *ngIf="userRole =='secretary' && isGraded==false" scope="col" class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"> </th>
+                  </tr>
+              </thead>
+              <tbody class="bg-transparent divide-y divide-gray-200" >
+                  <tr class="prueba text-gray-500" id="fila" *ngFor="let row of rowsComp" >
+                      <td class="px-4 py-4 whitespace-nowrap font-semibold">{{ row.id }}</td>
+                      <td class="px-4 py-4 whitespace-nowrap font-semibold">{{ row.name }} </td>
+                      <td class="pl-2 py-4 whitespace-nowrap font-semibold"><i class="fa-solid fa-eye" (click)="competenceDetail(row.id)"></i></td>
+                      <td *ngIf="userRole =='secretary' && isGraded==false" class="pr-2  py-4 whitespace-nowrap"><i class="fa-sharp fa-solid fa-trash" (click)="unassignCompetence(row.id)"></i></td>
+                  </tr>
+              </tbody>
+              </table>
+          </div>
+          <div class="mt-32" *ngIf="userRole =='secretary' && isGraded==false">
+              <a href="secretary/competencesAdd/{{courseId}}" class="bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600 transition-colors duration-300 ease-in-out">Add competence</a>
+          </div>
+          </div>
+      </div>
+      <div class="col-start-2 col-span-2 mt-10 mb-5">
+          <button type="submit" class="bg-slate-500 text-white py-2 px-4 rounded-md hover:bg-slate-600 transition-colors duration-300 ease-in-out" onclick="history.back()">Go Back</button>
+      </div>
+  </div>
+</section>
+
+<!--Movile-->
+<section class="lg:hidden xl:hidden 2xl:hidden">
+  <div class="mt-20">
+      <div class="max-w-full mt-100 col-start-2 col-span-10 rounded-md bg-sky-200 rounded-lg shadow-md">
+        <div class="flex flex-wrap pt-5">
+          <div style="max-width: 60%;">
+            <h1 class="pl-4 pt-3 text-xl text-gray-600 font-semibold mb-4">{{name}}</h1>
+            <p class="pl-4 text-base text-gray-600 mb-2">{{description}}</p>
+          </div>
+          <div *ngIf="passed==true && userRole=='student'&& isGraded==true" class="flex mr-5 py-2 flex-col items-center text-white justify-center bg-green-500 rounded-md shadow-md h-16 w-28 ml-auto">
+            <span class="text-sm">Grade</span>
+            <span class="text-lg font-semibold">{{currentStudentGrade}}</span>
+          </div>
+          <div *ngIf="passed==false && userRole=='student'&& isGraded==true" class="flex mr-5 py-2 flex-col items-center text-white justify-center bg-red-500 rounded-md shadow-md h-16 w-28 ml-auto">
+            <span class="text-sm">Grade</span>
+            <span class="text-lg font-semibold">{{currentStudentGrade}}</span>
+          </div>
+          <div *ngIf="userRole=='secretary'&& isGraded==true" class="flex mr-4 py-3 flex-col items-center text-white justify-center bg-orange-400 rounded-md shadow-md h-10 w-28 ml-auto">
+            <span class="text-sm font-semibold">Graded</span>
+          </div>
+        </div>
+        
+        <div class="flex flex-wrap pl-5 pt-5">
+          <div class="flex items-center text-white mb-2 mx-5">
+            <div class="flex flex-col items-center justify-center bg-blue-500 rounded-md shadow-md h-20 w-28">
+              <span class="text-sm">ECTS</span>
+              <span class="text-lg font-semibold">{{ects}}</span>
+            </div>
+          </div>
+          <div class="flex items-center text-white mb-2 mx-5">
+            <div class="flex flex-col items-center justify-center bg-blue-500 rounded-md shadow-md h-20 w-28">
+              <span class="text-sm">No. of Places</span>
+              <span class="text-lg font-semibold">{{num_places}}</span>
+            </div>
+          </div>
+          <div class="flex items-center text-white mb-2 mx-5">
+            <div class="flex flex-col items-center justify-center bg-blue-500 rounded-md shadow-md h-20 w-28">
+              <span class="text-sm">Start Date</span>
+              <span class="text-lg font-semibold">{{start_date}}</span>
+            </div>
+          </div>
+          <div class="flex items-center text-white mb-2 mx-5">
+            <div class="flex flex-col items-center justify-center bg-blue-500 rounded-md shadow-md h-20 w-28">
+              <span class="text-sm">End Date</span>
+              <span class="text-lg font-semibold">{{end_date}}</span>
+            </div>
+          </div>
+          <div class="flex items-center text-white mb-2 mx-5">
+            <div class="flex flex-col items-center justify-center bg-blue-500 rounded-md shadow-md h-20 w-28">
+              <span class="text-sm">Semester</span>
+              <span class="text-lg font-semibold">{{semester}}</span>
+            </div>
+          </div>
+          <div class="flex items-center text-white mb-2 mx-5">
+            <div class="flex flex-col items-center justify-center bg-blue-500 rounded-md shadow-md h-20 w-28">
+              <span class="text-sm">Faculty</span>
+              <span class="text-lg font-semibold">{{faculty}}</span>
+            </div>
+          </div>
+        </div>
+        <h2 *ngIf="userRole !=='teacher'" class="pl-4 pt-5 text-md font-semibold mb-4 text-gray-600">Course Teacher:</h2>
+        <div class="flex flex-wrap items-center justify-center" *ngIf="userRole !=='teacher'">
+          <span class="text-md text-gray-600 font-medium text-center" style="width: 80%;">{{courseTeacher}}</span>
+        </div>
+        <div class="mt-4 flex flex-wrap items-center justify-center" *ngIf="userRole =='secretary'">
+          <button *ngIf="isTeacher==true" class="bg-gray-500 text-white py-1.5 px-4 rounded-md hover:bg-gray-600 transition-colors duration-300 ease-in-out" (click)="unassignTeacher()">Unassign teacher</button>
+          <button *ngIf="isTeacher==false && isGraded==false" class="bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600 transition-colors duration-300 ease-in-out" (click)="enrolTeacher()">Enrol teacher</button>
+        </div>
+        <h2 class="pl-4 pt-6 text-md font-semibold mb-4 text-gray-600" *ngIf="userRole =='secretary' || userRole=='teacher'">Enrolled Students:</h2>
+        <div class="flex flex-wrap" *ngIf="userRole =='secretary' || userRole == 'teacher'">
+          <div class="max-w-full  mx-0 overflow-y-scroll rounded-md shadow-md " style="max-height: 300px;width: 100%;">
+              <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-100" >
+                  <tr>
+                  <th scope="col" class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Full Name</th>
+                  <th scope="col" *ngIf="userRole =='secretary' && isGraded==true" class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Grade</th>
+                  <th *ngIf="userRole =='secretary'" scope="col" class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"> </th>
+                  <th *ngIf="userRole =='teacher' && isGraded==false" scope="col" class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"> </th>
+                  <th scope="col" *ngIf="userRole =='teacher'" class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Grade</th>
+                  <th *ngIf="userRole =='teacher' || userRole=='secretary'" scope="col" class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"> </th>
+                  </tr>
+              </thead>
+              <tbody class="bg-transparent divide-y divide-gray-200" >
+                  <tr class="prueba text-gray-500" id="fila" *ngFor="let row of rows" >
+                      <td class="px-2 py-4 font-semibold" style="font-size: 14px;">{{ row.full_name }} </td>
+                      <td *ngIf="userRole =='teacher' && isGraded==true" class="px-2 py-4 whitespace-nowrap font-semibold" style="font-size: 14px;">{{ row.grade }}</td>
+                      <td *ngIf="userRole =='secretary' && isGraded==true" class="px-2 py-4 whitespace-nowrap font-semibold" style="font-size: 14px;">{{ row.grade }}</td>
+                      <td *ngIf="userRole =='secretary' || userRole=='teacher'" class="pr-2 pl-2 py-4 whitespace-nowrap"><i class="fa-solid fa-eye" (click)="viewStudent(row.id)"></i></td>
+                      <td *ngIf="userRole =='teacher' && isGraded==false" class="px-2 py-4 whitespace-nowrap font-semibold"><input type="number" step="any" min="0" max="10" id="inputGrade" class="border-2 border-gray-300 bg-white h-10 w-14 pl-2 rounded-lg text-sm focus:outline-none" [(ngModel)]="row.grade"></td>
+                      <td *ngIf="userRole =='secretary'" class="pr-2 pl-2 py-4 whitespace-nowrap"><i class="fa-sharp fa-solid fa-trash" (click)="unenrollStudent(row.id)"></i></td>
+                      <td *ngIf="userRole =='teacher' && isGraded==false" class="px-2 py-4 whitespace-nowrap font-semibold"><button type="submit" id="buttonGrade" class=" ml-10 bg-blue-500 text-white py-2 text-md px-2 rounded-md hover:bg-blue-600 transition-colors duration-300 ease-in-out" (click)="gradeStudent(row.id, row.grade)">Grade</button></td>
+                  </tr>
+              </tbody>
+              </table>
+          </div>
+          <div class="mt-14">
+              <button *ngIf="userRole =='secretary' && isGraded==false" class="ml-4 bg-gray-500 text-white py-1.5 px-4 rounded-md hover:bg-gray-600 transition-colors duration-300 ease-in-out" (click)="enrolNewStudent()">Enrol new student</button>
+            </div>
+          <div class="mt-5">
+            <button *ngIf="userRole =='teacher' && isGraded==false"type="submit" id="buttonGrade" class="ml-4 bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600 transition-colors duration-300 ease-in-out" (click)="signGrades()">Sign grades</button>
+          </div>
+          </div>
+          <h2 class="pl-4 pt-5 text-md font-semibold mb-4 text-gray-600">Competences:</h2>
+        <div class="flex flex-wrap pb-20">
+          <div class="max-w-full mx-0 overflow-y-scroll rounded-md shadow-md" style="max-height: 300px;width: 100%;">
+              <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-100" >
+                  <tr>
+                  <th scope="col" class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                  <th scope="col" class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">competence</th>
+                  <th scope="col" class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"> </th>
+                  <th *ngIf="userRole =='secretary'" scope="col" class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"> </th>
+                  </tr>
+              </thead>
+              <tbody class="bg-transparent divide-y divide-gray-200" >
+                  <tr class="prueba text-gray-500" id="fila" *ngFor="let row of rowsComp" >
+                      <td class="px-2 py-4 whitespace-nowrap font-semibold">{{ row.id }}</td>
+                      <td class="px-2 py-4 whitespace-nowrap font-semibold">{{ row.name }} </td>
+                      <td class="pr-2 pl-2 py-4 whitespace-nowrap font-semibold"><i class="fa-solid fa-eye" (click)="competenceDetail(row.id)"></i></td>
+                      <td *ngIf="userRole =='secretary'" class="pr-2 pl-2 py-4 whitespace-nowrap"><i class="fa-sharp fa-solid fa-trash" (click)="unassignCompetence(row.id)"></i></td>
+                  </tr>
+              </tbody>
+              </table>
+          </div>
+          <div class="mt-14" *ngIf="userRole =='secretary' && isGraded==false">
+              <button  class="ml-4 bg-gray-500 text-white py-1.5 px-4 rounded-md hover:bg-gray-600 transition-colors duration-300 ease-in-out" (click)="addCompetence()">Add competence</button>
+          </div>
+          </div>
+      </div>
+      <div class="col-start-2 col-span-2 mt-10 mb-5 ml-4">
+          <button type="submit" class="bg-slate-500 text-white py-2 px-4 rounded-md hover:bg-slate-600 transition-colors duration-300 ease-in-out" (click)="goBack()">Go Back</button>
+      </div>
+  </div>
+</section>
+
+  

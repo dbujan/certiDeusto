@@ -1,0 +1,289 @@
+
+<h1 class="text-2xl font-medium mb-5 text-center">Sign Up</h1>
+<section class="grid grid-cols-8 gap-4 mx-5 xs:hidden sm:hidden md:hidden">
+    <div class="col-start-1 col-span-2 max-w-md mx-5 my-10 bg-slate-50 p-5 rounded-md shadow-sm ">
+        <form class="">
+          <div class="mb-4 mx-auto max-w-md">
+            <label class="block text-gray-700 font-bold mb-2" for="tipo_usuario">
+              User tipe
+            </label>
+            <select
+              id="tipo_usuario"
+              name="tipo_usuario"
+              class="w-full border border-gray-400 p-2 rounded-md"
+              [(ngModel)]="userType"
+            >
+              <option value="student">Student</option>
+              <option value="teacher">Teacher</option>
+            </select>
+          </div>
+          <div class="mb-4 mx-auto max-w-md">
+            <label class="block text-gray-700 font-bold mb-2" for="gender">
+              Gender
+            </label>
+            <select
+              id="gender"
+              name="gender"
+              class="w-full border border-gray-400 p-2 rounded-md"
+              [(ngModel)]="gender"
+            >
+            <option *ngFor="let option of genders" [value]="option">{{ option }}</option>
+            </select>
+          </div>
+        </form>
+    </div>
+    <div class="col-start-4 col-span-2 max-w-md mx-5 my-10 bg-slate-50 p-5 rounded-md shadow-sm ">
+        <form>
+            <div class="mb-4" *ngIf="userType == 'student' || userType == 'teacher'">
+                <label class="block text-gray-700 font-bold mb-2" for="nombre">
+                  name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="w-full border border-gray-400 p-2 rounded-md"
+                  [(ngModel)]="name"
+                />
+              </div>
+              <div class="mb-4" *ngIf="userType == 'student' || userType == 'teacher'">
+                <label class="block text-gray-700 font-bold mb-2" for="apellido1">
+                  First surname
+                </label>
+                <input
+                  type="text"
+                  id="first_surname"
+                  name="first_surname"
+                  class="w-full border border-gray-400 p-2 rounded-md"
+                  [(ngModel)]="first_surname"
+                />
+              </div>
+              <div class="mb-4" *ngIf="userType == 'student' || userType == 'teacher'">
+                <label class="block text-gray-700 font-bold mb-2" for="apellido2">
+                  Second surname
+                </label>
+                <input
+                  type="text"
+                  id="second_surname"
+                  name="second_surname"
+                  class="w-full border border-gray-400 p-2 rounded-md"
+                  [(ngModel)]="second_surname"
+                />
+              </div>
+              <div class="mb-4" *ngIf="userType == 'student' || userType == 'teacher'">
+                <label class="block text-gray-700 font-bold mb-2" for="address">
+                  Address
+                </label>
+                <input
+                  type="text"
+                  id="address"
+                  name="address"
+                  class="w-full border border-gray-400 p-2 rounded-md"
+                  [(ngModel)]="address"
+                />
+              </div>
+              <div class="mb-4" *ngIf="userType == 'student' || userType == 'teacher'">
+                <label class="block text-gray-700 font-bold mb-2" for="country">
+                  Country
+                </label>
+                <input
+                  type="text"
+                  id="country"
+                  name="country"
+                  class="w-full border border-gray-400 p-2 rounded-md"
+                  [(ngModel)]="country"
+                />
+              </div>
+              <div class="mb-4" *ngIf="userType == 'student' || userType == 'teacher'">
+                <label class="block text-gray-700 font-bold mb-2" for="dni">
+                  Personal ID
+                </label>
+                <input
+                  type="text"
+                  id="personal_id"
+                  name="personal_id"
+                  class="w-full border border-gray-400 p-2 rounded-md"
+                  [(ngModel)]="id"
+                />
+              </div>
+              <div class="mb-4" *ngIf="userType == 'student' || userType == 'teacher'">
+                <label class="block text-gray-700 font-bold mb-2" for="fecha_nacimiento">
+                  Born date
+                </label>
+                <input
+                  type="date"
+                  id="born_date"
+                  name="born_date"
+                  class="w-full border border-gray-400 p-2 rounded-md"
+                  [(ngModel)]="born_date"
+                />
+    
+                </div>
+        </form>
+    </div>
+    <div class="col-start-7 col-span-2 max-w-md mx-5 my-10 bg-slate-50 p-5 rounded-md shadow-sm ">
+        <form>
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="email">
+                    email
+                  </label>
+                  <input
+                    type="text"
+                    id="email"
+                    name="email"
+                    class="w-full border border-gray-400 p-2 rounded-md"
+                    [(ngModel)]="email"
+                  />
+            </div>
+            <div class="mb-4">
+                <label for="password" class="block text-gray-700 font-bold mb-2" for="password">Password</label>
+                <input type="password" id="password" name="password" [(ngModel)]="password" class="border border-gray-400 p-2 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            </div>
+            <div class="mb-4">
+                <label for="password" class="block text-gray-700 font-bold mb-2" for="repeat_password">Repeat password</label>
+                <input type="password" id="repeat_password" name="repeat_password" [(ngModel)]="repeat_password" class="border border-gray-400 p-2 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            </div>
+            <button type="submit" class="bg-blue-500 text-white mt-10 py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-300 ease-in-out" (click)="register()" >Sign Up</button>
+        </form>
+    </div> 
+</section>
+
+
+<!--Movile-->
+
+<section class="flex flex-col mx-5 items-center lg:hidden xl:hidden 2xl:hidden">
+  <div class=" max-w-md mx-5 my-10 bg-slate-50 p-5 rounded-md shadow-sm " style="width: 90%;">
+      <form class="">
+        <div class="mb-4 mx-auto max-w-md">
+          <label class="block text-gray-700 font-bold mb-2" for="tipo_usuario1">
+            User tipe
+          </label>
+          <select
+            id="tipo_usuario1"
+            name="tipo_usuario"
+            class="w-full border border-gray-400 p-2 rounded-md"
+            [(ngModel)]="userType"
+            (change)="nextDiv1 = true"
+          >
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
+          </select>
+        </div>
+      </form>
+  </div>
+  <div class=" max-w-md mx-5 my-10 bg-slate-50 p-5 rounded-md shadow-sm "style="width: 90%;" *ngIf="nextDiv1==true">
+      <form>
+          <div class="mb-4" *ngIf="userType == 'student' || userType == 'teacher'">
+              <label class="block text-gray-700 font-bold mb-2" for="nombre">
+                name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="w-full border border-gray-400 p-2 rounded-md"
+                [(ngModel)]="name"
+              />
+            </div>
+            <div class="mb-4" *ngIf="userType == 'student' || userType == 'teacher'">
+              <label class="block text-gray-700 font-bold mb-2" for="apellido1">
+                First surname
+              </label>
+              <input
+                type="text"
+                id="first_surname"
+                name="first_surname"
+                class="w-full border border-gray-400 p-2 rounded-md"
+                [(ngModel)]="first_surname"
+              />
+            </div>
+            <div class="mb-4" *ngIf="userType == 'student' || userType == 'teacher'">
+              <label class="block text-gray-700 font-bold mb-2" for="apellido2">
+                Second surname
+              </label>
+              <input
+                type="text"
+                id="second_surname"
+                name="second_surname"
+                class="w-full border border-gray-400 p-2 rounded-md"
+                [(ngModel)]="second_surname"
+              />
+            </div>
+            <div class="mb-4" *ngIf="userType == 'student' || userType == 'teacher'">
+              <label class="block text-gray-700 font-bold mb-2" for="address">
+                Address
+              </label>
+              <input
+                type="text"
+                id="address"
+                name="address"
+                class="w-full border border-gray-400 p-2 rounded-md"
+                [(ngModel)]="address"
+              />
+            </div>
+            <div class="mb-4" *ngIf="userType == 'student' || userType == 'teacher'">
+              <label class="block text-gray-700 font-bold mb-2" for="country">
+                Country
+              </label>
+              <input
+                type="text"
+                id="country"
+                name="country"
+                class="w-full border border-gray-400 p-2 rounded-md"
+                [(ngModel)]="country"
+              />
+            </div>
+            <div class="mb-4" *ngIf="userType == 'student' || userType == 'teacher'">
+              <label class="block text-gray-700 font-bold mb-2" for="dni">
+                Personal ID
+              </label>
+              <input
+                type="text"
+                id="personal_id"
+                name="personal_id"
+                class="w-full border border-gray-400 p-2 rounded-md"
+                [(ngModel)]="id"
+              />
+            </div>
+            <div class="mb-4" *ngIf="userType == 'student' || userType == 'teacher'">
+              <label class="block text-gray-700 font-bold mb-2" for="fecha_nacimiento">
+                Born date
+              </label>
+              <input
+                type="date"
+                id="born_date"
+                name="born_date"
+                class="w-full border border-gray-400 p-2 rounded-md"
+                [(ngModel)]="born_date"
+                (change)="nextDiv2 = true"
+              />
+  
+              </div>
+      </form>
+  </div>
+  <div class=" max-w-md mx-5 my-10 bg-slate-50 p-5 rounded-md shadow-sm " style="width: 90%;" *ngIf="nextDiv2==true">
+      <form>
+          <div class="mb-4">
+              <label class="block text-gray-700 font-bold mb-2" for="email">
+                  email
+                </label>
+                <input
+                  type="text"
+                  id="email"
+                  name="email"
+                  class="w-full border border-gray-400 p-2 rounded-md"
+                  [(ngModel)]="email"
+                />
+          </div>
+          <div class="mb-4">
+              <label for="password" class="block text-gray-700 font-bold mb-2" for="password">Password</label>
+              <input type="password" id="password" name="password" [(ngModel)]="password" class="border border-gray-400 p-2 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+          </div>
+          <div class="mb-4">
+              <label for="password" class="block text-gray-700 font-bold mb-2" for="repeat_password">Repeat password</label>
+              <input type="password" id="repeat_password" name="repeat_password" [(ngModel)]="repeat_password" class="border border-gray-400 p-2 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+          </div>
+          <button type="submit" class="bg-blue-500 text-white mt-10 py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-300 ease-in-out" (click)="register()" >Sign Up</button>
+      </form>
+  </div> 
+</section>

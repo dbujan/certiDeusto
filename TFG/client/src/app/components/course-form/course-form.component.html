@@ -1,0 +1,255 @@
+<section class="xs:hidden sm:hidden md:hidden">
+  <div class="grid grid-cols-12 gap-4">
+      <div class="col-start-2 col-span-3 mt-10">
+          <h1 class="ml-200 text-2xl font-semibold text-gray-600 mb-14 ">New Course:</h1>
+      </div>
+    
+      <div class="max-w-full mt-50 col-start-2 col-span-10">
+          <form>
+              <div class="mb-6">
+                  <label class="block text-gray-700 font-bold mb-2" for="name">
+                      name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      class="w-full border border-gray-400 p-2 rounded-md"
+                      [(ngModel)]="name"
+                      (change)="courseV=false"
+                      [ngClass]="{'border-red-500': courseV == true, 'border-2': courseV == true}"
+                    />
+              </div>
+              <div class="mb-6">
+                  <label class="block text-gray-700 font-bold mb-2" for="description" >
+                      description
+                      </label>
+                      <input
+                      type="text"
+                      id="description"
+                      name="description"
+                      class="w-full border border-gray-400 p-2 rounded-md"
+                      [(ngModel)]="description"
+                      (change)="descriptionV=false"
+                      [ngClass]="{'border-red-500': descriptionV == true,'border-2': descriptionV == true}"
+                      />
+              </div>
+              <div class="mb-6">
+                  <label class="block text-gray-700 font-bold mb-2" for="ects">
+                      ECTS
+                      </label>
+                      <input
+                      type="number"
+                      id="ects"
+                      name="ects"
+                      class="w-full border border-gray-400 p-2 rounded-md"
+                      [(ngModel)]="ects"
+                      (change)="ectsV=false"
+                      [ngClass]="{'border-red-500': ectsV == true, 'border-2': ectsV == true, 'text-red-500': ectsV == true}"
+                      />
+              </div>
+              <div class="mb-6">
+                  <label class="block text-gray-700 font-bold mb-2" for="num_places">
+                      Number of places
+                      </label>
+                      <input
+                      type="number"
+                      id="num_places"
+                      name="num_places"
+                      class="w-full border border-gray-400 p-2 rounded-md"
+                      [(ngModel)]="num_places"
+                      (change)="num_placesV=false"
+                      [ngClass]="{'border-red-500': num_placesV == true,'border-2': num_placesV == true}"
+                      />
+              </div>
+              <div class="mb-6">
+                  <label class="block text-gray-700 font-bold mb-2" for="start_date">
+                      Start date
+                      </label>
+                      <input
+                      type="date"
+                      id="start_date"
+                      name="start_date"
+                      min={{dateNow}}
+                      class="w-full border border-gray-400 p-2 rounded-md"
+                      [(ngModel)]="start_date"
+                      (change)="dateStartV=false"
+                      [ngClass]="{'border-red-500': dateStartV == true,'text-red-500': dateStartV == true,'border-2': dateStartV == true}"
+                      />
+              </div>
+              <div class="mb-6">
+                  <label class="block text-gray-700 font-bold mb-2" for="end_date">
+                      End date
+                      </label>
+                      <input
+                      type="date"
+                      id="end_date"
+                      name="end_date"
+                      min={{dateNow}}
+                      class="w-full border border-gray-400 p-2 rounded-md"
+                      [(ngModel)]="end_date"
+                      (change)="dateEndV=false"
+                      [ngClass]="{'border-red-500': dateEndV == true,'text-red-500': dateEndV == true,'border-2': dateEndV == true}"
+                      />
+              </div>
+              <div class="mb-6">
+                  <label class="block text-gray-700 font-bold mb-2" for="semester">
+                      Semester
+                    </label>
+                    <select
+                      id="semester"
+                      name="semester"
+                      class="w-full border border-gray-400 p-2 rounded-md"
+                      [(ngModel)]="semester"
+                    >
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                    </select>
+              </div>
+              <div class="mb-6">
+                  <label class="block text-gray-700 font-bold mb-2" for="faculty">
+                      Faculty
+                    </label>
+                    <select
+                      id="faculty"
+                      name="faculty"
+                      class="w-full border border-gray-400 p-2 rounded-md"
+                      [(ngModel)]="faculty"
+                    >
+                    <option *ngFor="let option of options" [value]="option">{{ option }}</option>
+                    </select>
+              </div>
+              
+          </form>
+          
+      </div>
+      <div class="col-start-6 col-span-2 mt-5">
+        <button type="submit" class="bg-blue-500 text-white mt-10 py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-300 ease-in-out" (click)="validateForm()" >Create Course</button>
+      </div>
+      <div class="col-start-2 col-span-2 mt-10 mb-5">
+        <button type="submit" class="bg-slate-500 text-white py-2 px-4 rounded-md hover:bg-slate-600 transition-colors duration-300 ease-in-out" onclick="history.back()">Go Back</button>
+      </div>
+  </div>
+</section>
+
+<!--Movile-->
+
+<section class="lg:hidden xl:hidden 2xl:hidden">
+  <div class="grid grid-cols-12 gap-4">
+      <div class="ml-6 col-start-0 col-span-12 mt-10">
+          <h1 class="text-md font-semibold text-gray-600 mb-10 ">New Course:</h1>
+      </div>
+    
+      <div class="mx-6 max-w-full col-start-0 col-span-12">
+          <form>
+              <div class="mb-6">
+                  <label class="block text-gray-700 font-bold mb-2" style="font-size:14px;" for="name">
+                      name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      class="w-full border border-gray-400 p-2 rounded-md"
+                      [(ngModel)]="name"
+                    />
+              </div>
+              <div class="mb-6">
+                  <label class="block text-gray-700 font-bold mb-2" style="font-size:14px;" for="description">
+                      description
+                      </label>
+                      <input
+                      type="text"
+                      id="description"
+                      name="description"
+                      class="w-full border border-gray-400 p-2 rounded-md"
+                      [(ngModel)]="description"
+                      />
+              </div>
+              <div class="mb-6">
+                  <label class="block text-gray-700 font-bold mb-2" style="font-size:14px;" for="ects">
+                      ECTS
+                      </label>
+                      <input
+                      type="number"
+                      id="ects"
+                      name="ects"
+                      class="w-full border border-gray-400 p-2 rounded-md"
+                      [(ngModel)]="ects"
+                      />
+              </div>
+              <div class="mb-6">
+                  <label class="block text-gray-700 font-bold mb-2" style="font-size:14px;" for="num_places">
+                      Number of places
+                      </label>
+                      <input
+                      type="number"
+                      id="num_places"
+                      name="num_places"
+                      class="w-full border border-gray-400 p-2 rounded-md"
+                      [(ngModel)]="num_places"
+                      />
+              </div>
+              <div class="mb-6">
+                  <label class="block text-gray-700 font-bold mb-2" style="font-size:14px;" for="start_date">
+                      Start date
+                      </label>
+                      <input
+                      type="date"
+                      id="start_date"
+                      name="start_date"
+                      class="w-full border border-gray-400 p-2 rounded-md"
+                      [(ngModel)]="start_date"
+                      />
+              </div>
+              <div class="mb-6">
+                  <label class="block text-gray-700 font-bold mb-2" style="font-size:14px;" for="end_date">
+                      End date
+                      </label>
+                      <input
+                      type="date"
+                      id="end_date"
+                      name="end_date"
+                      class="w-full border border-gray-400 p-2 rounded-md"
+                      [(ngModel)]="end_date"
+                      />
+              </div>
+              <div class="mb-6">
+                  <label class="block text-gray-700 font-bold mb-2" style="font-size:14px;" for="semester">
+                      Semester
+                    </label>
+                    <select
+                      id="semester"
+                      name="semester"
+                      class="w-full border border-gray-400 p-2 rounded-md"
+                      [(ngModel)]="semester"
+                    >
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                    </select>
+              </div>
+              <div class="mb-4">
+                  <label class="block text-gray-700 font-bold mb-2" style="font-size:14px;" for="faculty">
+                      Faculty
+                    </label>
+                    <select
+                      id="faculty"
+                      name="faculty"
+                      class="w-full border border-gray-400 p-2 rounded-md"
+                      [(ngModel)]="faculty"
+                    >
+                    <option *ngFor="let option of options" [value]="option">{{ option }}</option>
+                    </select>
+              </div>
+              
+          </form>
+          
+      </div>
+      <div class="col-start-0 col-span-12 mx-auto ">
+        <button type="submit" class="bg-blue-500 text-white mt-10 py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-300 ease-in-out" (click)="validateForm()" >Create Course</button>
+      </div>
+      <div class="col-start-0 col-span-12 ml-6 mt-10 mb-5">
+        <button type="submit" class="bg-slate-500 text-white py-2 px-4 rounded-md hover:bg-slate-600 transition-colors duration-300 ease-in-out" (click)="goBack()">Go Back</button>
+      </div>
+  </div>
+</section>
