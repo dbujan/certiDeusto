@@ -1,0 +1,119 @@
+<section class="xs:hidden sm:hidden md:hidden">
+    <div class="grid grid-cols-12 gap-4 mt-10">
+        <div class="col-start-2 col-span-12 mt-10">
+            <h1 class="ml-200 text-2xl font-semibold text-gray-600 mb-14 ">Edit competence information:</h1>
+        </div>
+        <div class="max-w-full mt-50 col-start-2 col-span-10">
+            <form>
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-bold mb-2" for="name">
+                        name
+                    </label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        class="w-full border border-gray-400 p-2 rounded-md"
+                        (change)="anyChange = true"
+                        [(ngModel)]="name"
+                    />
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-bold mb-2" for="description">
+                        description
+                        </label>
+                        <input
+                        type="text"
+                        id="description"
+                        name="description"
+                        class="w-full border border-gray-400 p-2 rounded-md"
+                        (change)="anyChange = true"
+                        [(ngModel)]="description"
+                        />
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-bold mb-2" for="esco_url">
+                        ESCO_URL
+                        </label>
+                        <input
+                        type="text"
+                        id="esco_url"
+                        name="esco_url"
+                        class="w-full border border-gray-400 p-2 rounded-md"
+                        (change)="anyChange = true"
+                        [(ngModel)]="esco_url"
+                        />
+                </div>
+            </form>
+            
+        </div>
+        <div class="col-start-6 col-span-2 mt-5" *ngIf="anyChange">
+            <button type="submit" class="bg-blue-500 text-white mt-10 py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-300 ease-in-out" (click)="validateForm()" >Save Changes</button>
+        </div>
+    </div>
+
+    <div class="col-start-2 col-span-2 mt-10 mb-5">
+    <button type="submit" class="bg-slate-500 text-white py-2 px-4 rounded-md hover:bg-slate-600 transition-colors duration-300 ease-in-out" onclick="history.back()">Go Back</button>
+    </div>
+</section>
+
+<!--Movile-->
+
+<section class="lg:hidden xl:hidden 2xl:hidden">
+    <div class="grid grid-cols-12 gap-4 mt-10">
+        <div class="col-start-0 col-span-12 ml-6 mt-10">
+            <h1 class="ml-200 text-md font-semibold text-gray-600 mb-8 ">Edit competence information:</h1>
+        </div>
+        <div class="max-w-full mt-50 col-start-2 col-span-10" style="font-size: 14px;">
+            <form>
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-bold mb-2" for="name">
+                        name
+                    </label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        class="w-full border border-gray-400 p-2 rounded-md"
+                        (change)="anyChange = true"
+                        [(ngModel)]="name"
+                    />
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-bold mb-2" for="description">
+                        description
+                        </label>
+                        <input
+                        type="text"
+                        id="description"
+                        name="description"
+                        class="w-full border border-gray-400 p-2 rounded-md"
+                        (change)="anyChange = true"
+                        [(ngModel)]="description"
+                        />
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-bold mb-2" for="esco_url">
+                        ESCO_URL
+                        </label>
+                        <input
+                        type="text"
+                        id="esco_url"
+                        name="esco_url"
+                        class="w-full border border-gray-400 p-2 rounded-md"
+                        (change)="anyChange = true"
+                        [(ngModel)]="esco_url"
+                        />
+                </div>
+            </form>
+            
+        </div>
+        <div class="col-start-0 col-span-12 mx-auto" *ngIf="anyChange">
+            <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-300 ease-in-out" (click)="validateForm()" >Save Changes</button>
+        </div>
+    </div>
+
+    <div class="col-start-0 col-span-12 ml-6 mt-10 mb-5">
+    <button type="submit" class="bg-slate-500 text-white py-2 px-4 rounded-md hover:bg-slate-600 transition-colors duration-300 ease-in-out" (click)="goBack()">Go Back</button>
+    </div>
+</section>

@@ -1,0 +1,17 @@
+<div class="col-start-2 col-span-2 mt-10">
+    <h1 class="ml-200 text-2xl font-semibold text-gray-600 mb-20 ">Grade {{student?.name}} {{student?.surname1}} {{student?.surname2}} on {{course?.name}}:</h1>
+</div>
+<div class="col-start-2 col-span-6 mt-10">
+    <div class="">
+        <h2 class="text-lg">You acept that {{student?.name}} {{student?.surname1}} {{student?.surname2}} has obtained the following competences? <input type="checkbox" class="ml-5" [(ngModel)]="check" value="first_checkbox"></h2>
+        
+    </div>
+    <div class="" *ngFor="let row of rows">
+        <p class="mt-5"><i class="fa-solid fa-circle fa-xs mr-2 mt-2" style="color: #3b82f6;"></i><b>{{row.name}}:</b> {{row.description}}</p>
+    </div>
+</div>
+<div class="col-start-2 col-span-2 mt-10" *ngIf="check">
+    <input type="number" step="any" min="0" max="10" class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none" placeholder="Grade" [(ngModel)]="grade">
+    <button type="submit" class=" ml-10 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-300 ease-in-out" (click)="gradeStudent()">Grade</button>
+</div>
+

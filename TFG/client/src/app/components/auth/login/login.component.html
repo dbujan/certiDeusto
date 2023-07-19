@@ -1,0 +1,17 @@
+
+<div class="max-w-md mx-auto my-12 bg-white p-5 rounded-md md:shadow-md lg:shadow-md xl:shadow-md 2xl:shadow-md">
+  <h2 class="text-center font-bold text-xl mb-5">Login</h2>
+  <form action="#" method="POST">
+    <div class="mb-5">
+      <label for="username" class="block text-gray-700 font-semibold mb-2">Username</label>
+      <input type="text" id="username" [(ngModel)]="email" name="email" class="border border-gray-400 p-2 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+    </div>
+    <div class="mb-5">
+      <label for="password" class="block text-gray-700 font-semibold mb-2">Password</label>
+      <input type="password" id="password" [(ngModel)]="password" name="password" class="border border-gray-400 p-2 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+    </div>
+    <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-300 ease-in-out" (click)="submit()">Login</button>
+    <p class="ml-3 mt-3 text-center">Don't have an acount? <a class="ml-3 text-blue-600" href="/signup">Sign up</a></p>
+  </form>
+</div>
+

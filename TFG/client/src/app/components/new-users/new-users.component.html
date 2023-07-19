@@ -1,0 +1,120 @@
+<section class="xs:hidden sm:hidden md:hidden">
+  <div class="col-start-2 col-span-3 mt-10">
+    <h1 class="ml-200 text-2xl font-semibold text-gray-600 mb-20 ">Students:</h1>
+  </div>
+  <div class="max-w-full mt-100 col-start-2 col-span-10 overflow-y-scroll rounded-md shadow-md" *ngIf="rowsLoaded">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-sky-100">
+        <tr>
+          <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+          <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Full Name</th>
+          <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+          <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">DNI</th>
+          <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"> </th>
+          <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"> </th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        <tr *ngFor="let row of rows">
+          <td class="px-4 py-4 whitespace-nowrap">{{ row.id }}</td>
+          <td class="px-4 py-4 whitespace-nowrap">{{ row.full_name }}</td>
+          <td class="px-4 py-4 whitespace-nowrap">{{ row.email }}</td>
+          <td class="px-4 py-4 whitespace-nowrap">{{ row.dni }}</td>
+          <td class="px-4 py-4 whitespace-nowrap"><i class="fa-solid fa-check" (click)="aceptarAlumno(row.id, row.email)" ></i></td>
+          <td class="px-4 py-4 whitespace-nowrap"><i class="fa-solid fa-xmark"(click)="rejectAlumno(row.id, row.email)"></i> </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+<!--Teachers-->
+<div class="col-start-2 col-span-3 mt-10">
+  <h1 class="ml-200 text-2xl font-semibold text-gray-600 mb-20 ">Teachers:</h1>
+</div>
+<div class="max-w-full mt-100 col-start-2 col-span-10 overflow-y-scroll rounded-md shadow-md" *ngIf="rowstloaded">
+  <table class="min-w-full divide-y divide-gray-200">
+    <thead class="bg-sky-100">
+      <tr>
+        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Full Name</th>
+        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">DNI</th>
+        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"> </th>
+        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"> </th>
+      </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-200">
+      <tr *ngFor="let row of rowst">
+        <td class="px-4 py-4 whitespace-nowrap">{{ row.id }}</td>
+        <td class="px-4 py-4 whitespace-nowrap">{{ row.full_name }}</td>
+        <td class="px-4 py-4 whitespace-nowrap">{{ row.email }}</td>
+        <td class="px-4 py-4 whitespace-nowrap">{{ row.dni }}</td>
+        <td class="px-4 py-4 whitespace-nowrap"><i class="fa-solid fa-check" (click)="aceptarProfesor(row.id, row.email)" ></i></td>
+        <td class="px-4 py-4 whitespace-nowrap"><i class="fa-solid fa-xmark"(click)="rejectProfesor(row.id, row.email)"></i></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="col-start-2 col-span-2 mt-10">
+  <button type="submit" class="bg-slate-500 text-white py-2 px-4 rounded-md hover:bg-slate-600 transition-colors duration-300 ease-in-out" onclick="history.back()">Go Back</button>
+</div>
+</section>
+
+<!--Movile-->
+<section class="lg:hidden xl:hidden 2xl:hidden" style="z-index: 10;">
+  <div class="col-start-2 ml-4 col-span-12 mt-20">
+    <h1 class="ml-200 text-md font-semibold text-gray-600 mb-5 ">Students:</h1>
+  </div>
+  <div class="max-w-full mt-100 col-start-2 col-span-12 overflow-y-scroll rounded-md shadow-md" *ngIf="rowsLoaded">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-sky-100">
+        <tr>
+          <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+          <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Full Name</th>
+          <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"> </th>
+          <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"> </th>
+          <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"> </th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        <tr *ngFor="let row of rows">
+          <td class="px-4 py-4 whitespace-nowrap" style="font-size: 14px;">{{ row.id }}</td>
+          <td class="px-4 py-4 whitespace-nowrap" style="font-size: 14px;">{{ row.full_name }}</td>
+          <td class="px-4 py-4 whitespace-nowrap"><i class="fa-solid fa-eye" (click)="viewStudent(row.id)"></i></td>
+          <td class="px-4 py-4 whitespace-nowrap"><i class="fa-solid fa-check" (click)="aceptarAlumno(row.id, row.email)" ></i></td>
+          <td class="px-4 py-4 whitespace-nowrap"><i class="fa-solid fa-xmark"(click)="rejectAlumno(row.id, row.email)"></i> </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+<!--Teachers-->
+<div class="col-start-2 col-span-12 ml-4 mt-10">
+  <h1 class="ml-200 text-md font-semibold text-gray-600 mb-5 ">Teachers:</h1>
+</div>
+<div class="max-w-full mt-100 col-start-2 col-span-10 overflow-y-scroll rounded-md shadow-md" *ngIf="rowstloaded">
+  <table class="min-w-full divide-y divide-gray-200">
+    <thead class="bg-sky-100">
+      <tr>
+        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Full Name</th>
+        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"> </th>
+        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"> </th>
+        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"> </th>
+      </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-200">
+      <tr *ngFor="let row of rowst">
+        <td class="px-4 py-4 whitespace-nowrap" style="font-size: 14px;">{{ row.id }}</td>
+        <td class="px-4 py-4 whitespace-nowrap" style="font-size: 14px;">{{ row.full_name }}</td>
+        <td class="px-4 py-4 whitespace-nowrap"><i class="fa-solid fa-eye" (click)="viewTeacher(row.id)"></i></td>
+        <td class="px-4 py-4 whitespace-nowrap"><i class="fa-solid fa-check" (click)="aceptarProfesor(row.id, row.email)" ></i></td>
+        <td class="px-4 py-4 whitespace-nowrap"><i class="fa-solid fa-xmark"(click)="rejectProfesor(row.id, row.email)"></i></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="col-start-2 col-span-2 ml-3 mt-10">
+  <button type="submit" class="bg-slate-500 text-white py-2 px-4 rounded-md hover:bg-slate-600 transition-colors duration-300 ease-in-out" (click)="goBack()">Go Back</button>
+</div>
+</section>
+ 
+
